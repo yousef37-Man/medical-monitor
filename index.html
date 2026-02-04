@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Smart Medical Monitor</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { font-family: Arial; background:#0b132b; color:white; text-align:center; }
+    .card { background:#1c2541; margin:15px; padding:20px; border-radius:12px; }
+    .value { font-size:40px; }
+    .normal { color:#4CAF50; }
+    .warning { color:#FFC107; }
+    .critical { color:#F44336; }
+  </style>
+</head>
+
+<body>
+  <h1>🫀 Smart Medical Monitor</h1>
+
+  <div class="card">
+    <h2>Heart Rate</h2>
+    <div class="value" id="bpm">--</div>
+  </div>
+
+  <div class="card">
+    <h2>Body Temperature</h2>
+    <div class="value" id="temp">--</div>
+  </div>
+
+  <div class="card">
+    <h2>Status</h2>
+    <div class="value" id="status">--</div>
+  </div>
+
+  <script>
+    setInterval(() => {
+      fetch("https://your-api-url.com/data")
+        .then(res => res.json())
+        .then(d => {
+          document.getElementById("bpm").innerText = d.bpm + " BPM";
+          document.getElementById("temp").innerText = d.temperature + " °C";
+          document.getElementById("status").innerText = d.status;
+        });
+    }, 3000);
+  </script>
+</body>
+</html>
